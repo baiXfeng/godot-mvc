@@ -1,6 +1,6 @@
 extends Node2D
 	
-onready var _view = $user_attribute_view
+@onready var _view = $user_attribute_view
 	
 var _app: mvc_app = mvc_app.new()		# 创建mvc上下文
 	
@@ -11,7 +11,6 @@ func _ready():
 	_init_view()
 	
 func _init_app():
-	
 	# 启用 mvc 信息打印
 	_app.debug_print = true
 	

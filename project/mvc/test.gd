@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name mvc_test
 
 var _app: mvc_app = mvc_app.new("mvc_app_test")
