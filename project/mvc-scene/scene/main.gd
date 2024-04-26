@@ -11,7 +11,6 @@ func _ready():
 	_init_view()
 	
 func _init_app():
-	
 	# 启用 mvc 信息打印
 	_app.debug_print = true
 	
