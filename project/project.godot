@@ -8,6 +8,52 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "mvc_app",
+"language": "GDScript",
+"path": "res://mvc/app.gd"
+}, {
+"base": "Reference",
+"class": "mvc_command",
+"language": "GDScript",
+"path": "res://mvc/command.gd"
+}, {
+"base": "Reference",
+"class": "mvc_event",
+"language": "GDScript",
+"path": "res://mvc/event.gd"
+}, {
+"base": "Reference",
+"class": "mvc_event_center",
+"language": "GDScript",
+"path": "res://mvc/event_center.gd"
+}, {
+"base": "Reference",
+"class": "mvc_handler",
+"language": "GDScript",
+"path": "res://mvc/handler.gd"
+}, {
+"base": "Reference",
+"class": "mvc_proxy",
+"language": "GDScript",
+"path": "res://mvc/proxy.gd"
+}, {
+"base": "Reference",
+"class": "mvc_test",
+"language": "GDScript",
+"path": "res://mvc/test.gd"
+} ]
+_global_script_class_icons={
+"mvc_app": "",
+"mvc_command": "",
+"mvc_event": "",
+"mvc_event_center": "",
+"mvc_handler": "",
+"mvc_proxy": "",
+"mvc_test": ""
+}
+
 [application]
 
 config/name="mvc-project"
