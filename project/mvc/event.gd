@@ -35,5 +35,5 @@ func _get_context():
 	return _context.get_ref()
 	
 func _to_string():
-	return "mvc_event(\"%s\", %s)" % [name, _data]
+	return "mvc_event(\"%s\", %s)" % [_name, _data]
 	
