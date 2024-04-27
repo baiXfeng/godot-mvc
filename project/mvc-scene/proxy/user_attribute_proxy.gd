@@ -11,6 +11,11 @@ signal on_gold_changed(value)
 # 血量变更信号
 signal on_hp_changed(value)
 	
+# 更新UI
+func update_ui():
+	emit_signal("on_gold_changed", _gold)
+	emit_signal("on_hp_changed", _hp)
+	
 # 增加金币
 func add_gold(value: int):
 	_gold += value
@@ -38,6 +43,8 @@ func _on_save(dict: Dictionary):
 	
 # override
 func _on_load(dict: Dictionary):
-	_hp = dict["hp"] as int
-	_gold = dict["gold"] as int
+	if dict.has("hp"):
+		_hp = dict["hp"] as int
+	if dict.has("gold"):
+		_gold = dict["gold"] as int
 	

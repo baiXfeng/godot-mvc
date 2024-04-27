@@ -13,6 +13,21 @@ func _on_execute(e: mvc_event):
 	var data: Dictionary
 	user_attr.save( data )
 	
+	# 保存到磁盘
+	_write_file(data, "game.save")
+	
 	# 打印玩家序列化数据
 	printt("玩家存档:", data)
+	
+func _write_file(data: Dictionary, filename: String) -> bool:
+	var data_text = to_json(data)
+	var file = File.new()
+	var file_path = "user://" + filename
+	
+	if file.open(file_path, File.WRITE) == OK:
+		file.store_string(data_text)
+		file.close()
+		return true
+	
+	return false
 	

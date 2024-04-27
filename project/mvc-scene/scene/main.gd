@@ -24,6 +24,10 @@ func _init_app():
 	
 	# 注册存档命令
 	_app.add_command("save_game_command", load("res://mvc-scene/command/save_game_command.gd"))
+	_app.add_command("load_game_command", load("res://mvc-scene/command/load_game_command.gd"))
+	
+	# 读取存档
+	_app.notify("load_game_command")
 	
 func _init_view():
 	# 获取用户数据
