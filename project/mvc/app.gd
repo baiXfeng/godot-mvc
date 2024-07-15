@@ -76,18 +76,23 @@ class _command_shell extends RefCounted:
 	var _debug_print: bool
 	var _class: Resource
 	var _app_name: String
+	var _app: WeakRef
 	func _init(r: Resource, debug_print: bool = false):
 		_class = r
 		_debug_print = debug_print
 	func _register(a: mvc_app, name: String):
 		_app_name = a.name()
+		_app = weakref(a)
 		a.add_listener(name, self, "_on_event")
 	func _unregister(a: mvc_app, name: String):
 		a.remove_listener(name, self)
+		_app = null
 	func _on_event(e: mvc_event):
 		if _debug_print:
 			print("command <%s:%s> execute." % [_app_name, e.name])
-		_class.new().execute(e)
+		var cmd = _class.new()
+		cmd._set_app(_app.get_ref())
+		cmd.execute(e)
 	
 func add_command(name: String, cmdres: Resource) -> bool:
 	if cmdres == null:
@@ -121,8 +126,14 @@ func has_command(name: String):
 func add_listener(name: String, listener: Object, function: String):
 	_event_pool.add(name, listener, function)
 	
+func add_callable(name: String, c: Callable):
+	_event_pool.add_callable(name, c)
+	
 func remove_listener(name: String, listener: Object):
 	_event_pool.remove(name, listener)
+	
+func remove_callable(name: String, c: Callable):
+	_event_pool.remove_callable(name, c)
 	
 func notify(event_name: String, value = null):
 	_event_pool.notify(event_name, value)

@@ -3,11 +3,8 @@ extends mvc_command
 # override
 func _on_execute(e: mvc_event):
 	
-	# 获取 mvc 上下文
-	var app: mvc_app = e.context
-	
 	# 获取玩家属性
-	var user_attr: user_attribute_proxy = app.get_proxy("user_attr")
+	var user_attr: user_attribute_proxy = get_proxy("user_attr")
 	
 	# 序列化玩家数据
 	var data: Dictionary
@@ -20,14 +17,11 @@ func _on_execute(e: mvc_event):
 	printt("玩家存档:", data)
 	
 func _write_file(data: Dictionary, filename: String) -> bool:
-	var data_text = to_json(data)
-	var file = File.new()
+	var data_text = JSON.stringify(data)
 	var file_path = "user://" + filename
-	
-	if file.open(file_path, File.WRITE) == OK:
-		file.store_string(data_text)
-		file.close()
-		return true
-	
-	return false
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	if file.get_open_error() != OK:
+		return false
+	file.store_string(data_text)
+	return true
 	

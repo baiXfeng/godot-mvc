@@ -7,6 +7,9 @@ func name() -> String:
 func app() -> mvc_app:
 	return _app.get_ref()
 	
+func get_proxy(name: String) -> mvc_proxy:
+	return app().get_proxy(name)
+	
 func on_enter(a: mvc_app):
 	if a.debug_print:
 		print("handler <%s:%s> on_enter." % [app().name(), _name])
@@ -49,6 +52,9 @@ func _on_save(dict: Dictionary):
 # override
 func _on_load(dict: Dictionary):
 	pass
+	
+# ==============================================================================
+# private function
 	
 func _set_name(n: String):
 	_name = n
