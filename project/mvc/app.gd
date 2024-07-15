@@ -125,7 +125,7 @@ func remove_listener(name: String, listener: Object):
 	_event_pool.remove(name, listener)
 	
 func notify(event_name: String, value = null):
-	_event_pool.notify(event_name, value, self)
+	_event_pool.notify(event_name, value)
 	
 func send(e: mvc_event):
 	_event_pool.send(e)
