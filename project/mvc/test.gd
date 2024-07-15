@@ -62,7 +62,7 @@ class _event_handler extends mvc_handler:
 func _test_event():
 	var handler: mvc_handler = _app.get_handler("h1")
 	handler.notify("test_cmd_2")
-	handler.send(mvc_event.new("test_cmd_2", null, null))
+	handler.send(mvc_event.new("test_cmd_2", null))
 	
 	print("")
 	
