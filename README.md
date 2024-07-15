@@ -1,6 +1,8 @@
 # godot-mvc
 Lightweight mvc framework wirtten with gdscript.
 
+![](mvc.png)
+
 # Features
 
 - Lightweight and non-intrusive.
@@ -26,7 +28,7 @@ app.add_proxy("p3", mvc_proxy.new(3))
 # add handler (controller)
 app.add_handler("h1", mvc_handler.new())
 app.add_handler("h2", mvc_handler.new())
-app.add_handler("h2", mvc_handler.new())
+app.add_handler("h3", mvc_handler.new())
 
 # add command
 app.add_command("my_command", mvc_command)
