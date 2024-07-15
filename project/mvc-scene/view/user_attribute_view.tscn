@@ -1,27 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bds0qt5nmpsbs"]
 
-[ext_resource path="res://mvc-scene/view/user_attribute_view.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://mvc-scene/view/user_attribute_view.gd" id="1"]
 
 [node name="user_attribute_view" type="HBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="gold" type="Label" parent="."]
-offset_top = 5.0
-offset_right = 100.0
-offset_bottom = 35.0
-custom_minimum_size = Vector2( 100, 30 )
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
 text = "GOLD: 0"
-align = 1
-valign = 1
 
 [node name="HP" type="Label" parent="."]
-offset_left = 104.0
-offset_top = 5.0
-offset_right = 204.0
-offset_bottom = 35.0
-custom_minimum_size = Vector2( 100, 30 )
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
 text = "HP: 0"
-align = 1
-valign = 1

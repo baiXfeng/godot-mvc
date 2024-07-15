@@ -13,13 +13,13 @@ signal on_hp_changed(value)
 	
 # 更新UI
 func update_ui():
-	emit_signal("on_gold_changed", _gold)
-	emit_signal("on_hp_changed", _hp)
+	on_gold_changed.emit(_gold)
+	on_hp_changed.emit(_hp)
 	
 # 增加金币
 func add_gold(value: int):
 	_gold += value
-	emit_signal("on_gold_changed", _gold)
+	on_gold_changed.emit(_gold)
 	
 # 获取金币
 func get_gold() -> int:
@@ -30,7 +30,7 @@ func add_hp(value: int):
 	_hp += value
 	if _hp <= 0:
 		_hp = 0
-	emit_signal("on_hp_changed", _hp)
+	on_hp_changed.emit(_hp)
 	
 # 获取血量
 func get_hp() -> int:
