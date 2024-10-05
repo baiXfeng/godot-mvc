@@ -1,4 +1,4 @@
-extends RefCounted
+extends Node
 class_name mvc_handler
 	
 func name() -> String:
@@ -19,12 +19,7 @@ func on_exit(a: mvc_app):
 	if a.debug_print:
 		print("handler <%s:%s> on_exit." % [app().name(), _name])
 	_on_exit(a)
-	
-func save(dict: Dictionary):
-	_on_save(dict)
-	
-func load(dict: Dictionary):
-	_on_load(dict)
+	queue_free()
 	
 func notify(event_name: String, value = null):
 	app().notify(event_name, value)
@@ -45,16 +40,11 @@ func _on_enter(a: mvc_app):
 func _on_exit(a: mvc_app):
 	pass
 	
-# override
-func _on_save(dict: Dictionary):
-	pass
-	
-# override
-func _on_load(dict: Dictionary):
-	pass
-	
 # ==============================================================================
 # private function
+func _init(parent: Node = null):
+	if parent:
+		parent.add_child(self)
 	
 func _set_name(n: String):
 	_name = n

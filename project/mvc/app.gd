@@ -41,7 +41,7 @@ func remove_all_proxies():
 func has_proxy(name: String) -> bool:
 	return _proxy_pool.has(name)
 	
-func get_proxy(name: String):
+func get_proxy(name: String) -> mvc_proxy:
 	if _proxy_pool.has(name):
 		return _proxy_pool[name]
 	return null
@@ -83,9 +83,9 @@ class _command_shell extends RefCounted:
 	func _register(a: mvc_app, name: String):
 		_app_name = a.name()
 		_app = weakref(a)
-		a.add_listener(name, self, "_on_event")
+		a.add_callable(name, _on_event)
 	func _unregister(a: mvc_app, name: String):
-		a.remove_listener(name, self)
+		a.remove_callable(name, _on_event)
 		_app = null
 	func _on_event(e: mvc_event):
 		if _debug_print:
@@ -123,14 +123,8 @@ func remove_all_commands() -> bool:
 func has_command(name: String):
 	return _command_pool.has(name)
 	
-func add_listener(name: String, listener: Object, function: String):
-	_event_pool.add(name, listener, function)
-	
 func add_callable(name: String, c: Callable):
 	_event_pool.add_callable(name, c)
-	
-func remove_listener(name: String, listener: Object):
-	_event_pool.remove(name, listener)
 	
 func remove_callable(name: String, c: Callable):
 	_event_pool.remove_callable(name, c)

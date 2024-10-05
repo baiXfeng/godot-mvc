@@ -52,10 +52,10 @@ func _test_command():
 class _event_handler extends mvc_handler:
 	# override
 	func _on_enter(a: mvc_app):
-		a.add_listener("test", self, "_on_event")
+		a.add_callable("test", _on_event)
 	# override
 	func _on_exit(a: mvc_app):
-		a.remove_listener("test", self)
+		a.remove_callable("test", _on_event)
 	func _on_event(e: mvc_event):
 		print("handler <%s> on event <%s> with <%s>." % [name(), e.name, e.data])
 	

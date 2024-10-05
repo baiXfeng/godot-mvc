@@ -1,11 +1,17 @@
 extends RefCounted
 class_name mvc_proxy
 	
+signal on_data_changed(sender: mvc_proxy, data)
+	
 func name() -> String:
 	return _name
 	
 func data():
 	return _data
+	
+func set_data(d):
+	_data = d
+	on_data_changed.emit(self, _data)
 	
 func app() -> mvc_app:
 	return _app.get_ref()
