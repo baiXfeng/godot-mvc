@@ -1,5 +1,5 @@
 # godot-mvc
-Lightweight mvc framework wirtten with gdscript.
+Lightweight mvc framework written with gdscript.
 
 ![](mvc.png)
 
@@ -15,30 +15,30 @@ Lightweight mvc framework wirtten with gdscript.
 - Copy the 'mvc' directory to any location within your Godot project.
 - Begin your MVC coding journey with the following code:
 
-```
+```gdscript
 
 # create mvc app
-var app = mvc_app.new()
+var app = MVCApp.new()
 
 # add proxy (model proxy)
-app.add_proxy("p1", mvc_proxy.new(1))
-app.add_proxy("p2", mvc_proxy.new(2))
-app.add_proxy("p3", mvc_proxy.new(3))
+app.add_proxy("p1", MVCProxy.new(1))
+app.add_proxy("p2", MVCProxy.new(2))
+app.add_proxy("p3", MVCProxy.new(3))
 
 # add handler (controller)
-app.add_handler("h1", mvc_handler.new())
-app.add_handler("h2", mvc_handler.new())
-app.add_handler("h3", mvc_handler.new())
+app.add_handler("h1", MVCHnadler.new())
+app.add_handler("h2", MVCHnadler.new())
+app.add_handler("h3", MVCHnadler.new())
 
 # add command
-app.add_command("my_command", mvc_command)
+app.add_command("my_command", MVCCommand)
 
 # send notification
 app.notify("my_notification", with_param)
 app.notify("my_command", with_param)
 
 # get proxy
-var p1: mvc_proxy = app.get_proxy("p1")
+var p1: MVCProxy = app.get_proxy("p1")
 print( p1.data() )
 
 ```
