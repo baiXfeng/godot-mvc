@@ -2,7 +2,7 @@ extends Node2D
 	
 @onready var _view = $user_attribute_view
 	
-var _app: mvc_app = mvc_app.new()		# 创建mvc上下文
+var _app: MVCApp = MVCApp.new()		# 创建mvc上下文
 	
 func _ready():
 	# 初始化应用

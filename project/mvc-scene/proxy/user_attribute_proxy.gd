@@ -1,4 +1,4 @@
-extends mvc_proxy
+extends MVCProxy
 class_name user_attribute_proxy
 	
 # 金币

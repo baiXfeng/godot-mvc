@@ -1,5 +1,5 @@
 extends RefCounted
-class_name mvc_event
+class_name MVCEvent
 
 var name: String: get = _get_name, set = _set_name
 var data : get = _get_data, set = _set_data
@@ -26,5 +26,5 @@ func _get_data():
 	return _data
 	
 func _to_string():
-	return "mvc_event(\"%s\", %s)" % [_name, _data]
+	return "MVCEvent(\"%s\", %s)" % [_name, _data]
 	

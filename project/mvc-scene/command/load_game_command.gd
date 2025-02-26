@@ -1,7 +1,7 @@
-extends mvc_command
+extends MVCCommand
 
 # override
-func _on_execute(e: mvc_event):
+func _on_execute(e: MVCEvent):
 	
 	# 获取玩家属性
 	var user_attr: user_attribute_proxy = get_proxy("user_attr")

@@ -1,5 +1,5 @@
 extends RefCounted
-class_name mvc_app
+class_name MVCApp
 
 var debug_print: bool
 
@@ -7,9 +7,9 @@ var _name: String
 var _proxy_pool: Dictionary
 var _handler_pool: Dictionary
 var _command_pool: Dictionary
-var _event_pool: mvc_event_center = mvc_event_center.new()
+var _event_pool: MVCEventCenter = MVCEventCenter.new()
 	
-func _init(name: String = "mvc_app"):
+func _init(name: String = "MVCApp"):
 	_name = name
 	
 func name() -> String:
@@ -20,7 +20,7 @@ func clear():
 	remove_all_handlers()
 	remove_all_proxies()
 	
-func add_proxy(name: String, proxy):
+func add_proxy(name: String, proxy: MVCProxy = MVCProxy.new()):
 	remove_proxy(name)
 	_proxy_pool[name] = proxy
 	proxy._set_name(name)
@@ -41,7 +41,7 @@ func remove_all_proxies():
 func has_proxy(name: String) -> bool:
 	return _proxy_pool.has(name)
 	
-func get_proxy(name: String) -> mvc_proxy:
+func get_proxy(name: String) -> MVCProxy:
 	if _proxy_pool.has(name):
 		return _proxy_pool[name]
 	return null
@@ -80,14 +80,14 @@ class _command_shell extends RefCounted:
 	func _init(r: Resource, debug_print: bool = false):
 		_class = r
 		_debug_print = debug_print
-	func _register(a: mvc_app, name: String):
+	func _register(a: MVCApp, name: String):
 		_app_name = a.name()
 		_app = weakref(a)
 		a.add_callable(name, _on_event)
-	func _unregister(a: mvc_app, name: String):
+	func _unregister(a: MVCApp, name: String):
 		a.remove_callable(name, _on_event)
 		_app = null
-	func _on_event(e: mvc_event):
+	func _on_event(e: MVCEvent):
 		if _debug_print:
 			print("command <%s:%s> execute." % [_app_name, e.name])
 		var cmd = _class.new()
@@ -103,7 +103,7 @@ func add_command(name: String, cmdres: Resource) -> bool:
 	_command_pool[name] = shell
 	shell._register(self, name)
 	if debug_print:
-		print("command <%s:%s> add to mvc_app." % [_name, name])
+		print("command <%s:%s> add to MVCApp." % [_name, name])
 	return true
 	
 func remove_command(name: String) -> bool:
@@ -111,7 +111,7 @@ func remove_command(name: String) -> bool:
 		var shell = _command_pool[name]
 		shell._unregister(self, name)
 		if debug_print:
-			print("command <%s:%s> remove from mvc_app." % [_name, name])
+			print("command <%s:%s> remove from MVCApp." % [_name, name])
 	return _command_pool.erase(name)
 	
 func remove_all_commands() -> bool:
@@ -132,6 +132,6 @@ func remove_callable(name: String, c: Callable):
 func notify(event_name: String, value = null):
 	_event_pool.notify(event_name, value)
 	
-func send(e: mvc_event):
+func send(e: MVCEvent):
 	_event_pool.send(e)
 	

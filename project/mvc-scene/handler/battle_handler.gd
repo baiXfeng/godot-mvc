@@ -1,21 +1,21 @@
-extends mvc_handler
+extends MVCHnadler
 	
 # override
-func _on_enter(a: mvc_app):
+func _on_enter(a: MVCApp):
 	# 监听战斗模拟事件
 	a.add_callable("on_battle_simulation", _on_battle_simulation)
 	# 监听恢复血量技能事件
 	a.add_callable("on_skill_recover_hp", _on_skill_recover_hp)
 	
 # override
-func _on_exit(a: mvc_app):
+func _on_exit(a: MVCApp):
 	# 解除战斗模拟事件监听
 	a.remove_callable("on_battle_simulation", _on_battle_simulation)
 	# 解除恢复血量技能事件监听
 	a.remove_callable("on_skill_recover_hp", _on_battle_simulation)
 
 # 处理战斗模拟事件
-func _on_battle_simulation(e: mvc_event):
+func _on_battle_simulation(e: MVCEvent):
 	# 获取玩家属性
 	var user_attr: user_attribute_proxy = get_proxy("user_attr")
 	
@@ -28,7 +28,7 @@ func _on_battle_simulation(e: mvc_event):
 	printt("战斗伤害:", damage, "当前血量:", user_attr.get_hp())
 
 # 处理恢复血量技能
-func _on_skill_recover_hp(e: mvc_event):
+func _on_skill_recover_hp(e: MVCEvent):
 	# 获取玩家属性
 	var user_attr: user_attribute_proxy = get_proxy("user_attr")
 	

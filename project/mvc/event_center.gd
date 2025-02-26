@@ -1,5 +1,5 @@
 extends RefCounted
-class_name mvc_event_center
+class_name MVCEventCenter
 	
 var _event_dict: Dictionary
 	
@@ -10,9 +10,9 @@ func remove_callable(name: String, c: Callable) -> bool:
 	return _get_event_listener(name).remove(c)
 	
 func notify(name: String, value):
-	send( mvc_event.new(name, value) )
+	send( MVCEvent.new(name, value) )
 	
-func send(e: mvc_event):
+func send(e: MVCEvent):
 	_get_event_listener(e.name).receive(e)
 	
 func clear():
@@ -25,7 +25,7 @@ func _get_event_listener(name: String) -> _listener:
 	
 # implement listener
 class _listener extends RefCounted:
-	signal _impl(e: mvc_event)
+	signal _impl(e: MVCEvent)
 	func add(c: Callable) -> bool:
 		if _impl.is_connected(c):
 			return false
@@ -36,6 +36,6 @@ class _listener extends RefCounted:
 			return false
 		_impl.disconnect(c)
 		return true
-	func receive(e: mvc_event):
+	func receive(e: MVCEvent):
 		_impl.emit(e)
 	
