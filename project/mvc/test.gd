@@ -21,9 +21,9 @@ func _test_proxy():
 	print("")
 	
 func _test_handler():
-	_app.add_handler("h1", MVCHnadler.new())
-	_app.add_handler("h2", MVCHnadler.new())
-	_app.add_handler("h3", MVCHnadler.new())
+	_app.add_handler("h1", MVCHandler.new())
+	_app.add_handler("h2", MVCHandler.new())
+	_app.add_handler("h3", MVCHandler.new())
 	_app.remove_handler("h3")
 	
 	printt("get handler", _app.get_handler("h1"), "has handler", _app.has_handler("h3"))
@@ -49,7 +49,7 @@ func _test_command():
 	printt("has command", _app.has_command("test_cmd_1"))
 	print("")
 	
-class _event_handler extends MVCHnadler:
+class _event_handler extends MVCHandler:
 	# override
 	func _on_enter(a: MVCApp):
 		a.add_callable("test", _on_event)
@@ -60,7 +60,7 @@ class _event_handler extends MVCHnadler:
 		print("handler <%s> on event <%s> with <%s>." % [name(), e.name, e.data])
 	
 func _test_event():
-	var handler: MVCHnadler = _app.get_handler("h1")
+	var handler: MVCHandler = _app.get_handler("h1")
 	handler.notify("test_cmd_2")
 	handler.send(MVCEvent.new("test_cmd_2", null))
 	

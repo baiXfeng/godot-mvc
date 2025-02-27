@@ -1,5 +1,5 @@
 extends Node
-class_name MVCHnadler
+class_name MVCHandler
 	
 func name() -> String:
 	return _name
