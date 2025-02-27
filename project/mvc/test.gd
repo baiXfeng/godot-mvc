@@ -1,5 +1,5 @@
 extends RefCounted
-class_name mvc_test
+class_name MVCTest
 
 var _app: MVCApp = MVCApp.new("MVCApp_test")
 
